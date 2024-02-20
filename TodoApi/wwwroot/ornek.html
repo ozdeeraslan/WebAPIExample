@@ -8,10 +8,6 @@
 <body>
     <h1>5 Günlük Hava Durumu</h1>
 
-    Görev: 5 günlük hava durumunu tabloda gösterin.
-
-    <!--<div id="havaDurumu"></div>-->
-
     <table class="table">
         <thead>
             <tr>
@@ -49,38 +45,11 @@
                 return gun + "." + ay + "." + yil;
         }
 
-        function tarihiBicimlendir2(tarih) {
-            var date = new Date(tarih);
-            return date.toLocaleDateString();
-        }
+        //function tarihiBicimlendir2(tarih) {
+        //    var date = new Date(tarih);
+        //    return date.toLocaleDateString();
+        //}
     </script>
 
-    <!--<script>
-        fetch("/api/HavaDurumu")
-            .then(response => response.json())
-            .then(data => {
-                const table = `
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Tarih</th>
-                                        <th>Sıcaklık</th>
-                                        <th>Açıklama</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${data.map(item => `
-                                        <tr>
-                                            <td>${item.tarih}</td>
-                                            <td>${item.sicaklik}</td>
-                                            <td>${item.aciklama}</td>
-                                        </tr>
-                                    `).join('')}
-                                </tbody>
-                            </table>
-                        `;
-                document.getElementById('havaDurumu').innerHTML = table;
-            });
-    </script>-->
 </body>
 </html>
