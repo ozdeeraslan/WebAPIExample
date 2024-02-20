@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hava Durumu</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>5 Günlük Hava Durumu</h1>
+
+    Görev: 5 günlük hava durumunu tabloda gösterin.
+
+    <!--<div id="havaDurumu"></div>-->
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tarih</th>
+                <th>Sıcaklık</th>
+                <th>Açıklama</th>
+            </tr>
+        </thead>
+        <tbody id="sonuc">
+        </tbody>
+    </table>
+
+
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        fetch("/api/HavaDurumu")
+            .then(response => response.json())
+            .then(data => {
+                for (const gun of data) {
+                    document.getElementById("sonuc").innerHTML +=
+                        `<tr>
+                                <td>${tarihiBicimlendir(gun.tarih)}</td>
+                                <td>${gun.sicaklik} °C</td>
+                                <td>${gun.aciklama}</td>
+                                </tr`
+                }
+            });
+
+        function tarihiBicimlendir(tarih) {
+                const yil = tarih.substr(0, 4);
+                const ay = tarih.substr(5, 2);
+                const gun = tarih.substr(8, 2);
+                return gun + "." + ay + "." + yil;
+        }
+
+        function tarihiBicimlendir2(tarih) {
+            var date = new Date(tarih);
+            return date.toLocaleDateString();
+        }
+    </script>
+
+    <!--<script>
+        fetch("/api/HavaDurumu")
+            .then(response => response.json())
+            .then(data => {
+                const table = `
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tarih</th>
+                                        <th>Sıcaklık</th>
+                                        <th>Açıklama</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${data.map(item => `
+                                        <tr>
+                                            <td>${item.tarih}</td>
+                                            <td>${item.sicaklik}</td>
+                                            <td>${item.aciklama}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        `;
+                document.getElementById('havaDurumu').innerHTML = table;
+            });
+    </script>-->
+</body>
+</html>
