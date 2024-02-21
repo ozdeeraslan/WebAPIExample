@@ -46,5 +46,5 @@ using (var scope = app.Services.CreateScope())
 
 app.Run();
 
-// Install-Package Microsoft.EntityFramewordkCore
-// Install-Package Microsoft.EntityFramewordkCore.InMemory
+// Install-Package Microsoft.EntityFrameworkCore
+// Install-Package Microsoft.EntityFrameworkCore.InMemory
