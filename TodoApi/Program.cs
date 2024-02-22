@@ -4,6 +4,8 @@ using TodoApi.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(s => s.AddDefaultPolicy(
+    p => p.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 
 builder.Services.AddDbContext<TodoContext>(builder => builder.UseInMemoryDatabase("TodoList")); // "TodoList" = veritabani adi
 
@@ -31,7 +33,10 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 
+app.UseCors();
+
 app.UseAuthorization();
+
 
 app.MapControllers();
 
